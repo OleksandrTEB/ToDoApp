@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10,0,10,0">
+
+            <VerticalStackLayout>
+                <Entry
+                    x:Name="taskEntry"
+                    Placeholder="Enter a text for the task:"
+                    Margin="0,0,0,20" />
+                
+                <Button
+                    x:Name="AddTaskButton"
+                    Clicked="AddTaskButton_Clicked"
+                    Text="Add Task"
+                    Margin="0,0,0,30" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label
+                    Text="Task List:"
+                    FontAttributes="Bold"
+                    Margin="0,0,0,10" />
+
+                <VerticalStackLayout x:Name="taskListLayout"></VerticalStackLayout>
+            </VerticalStackLayout>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
