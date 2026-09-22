@@ -24,6 +24,7 @@ namespace ToDoApp
                     {
                         Direction = FlexDirection.Row,
                         JustifyContent = FlexJustify.SpaceBetween,
+                        Margin = new Thickness(0, 0, 0, 10),
                     };
 
 
@@ -35,11 +36,11 @@ namespace ToDoApp
                     div.Children.Add(label);
 
 
-                    Button button = new Button
-                    {
-                        Text = "Completed",
-                    };
-                    div.Children.Add(button);
+                    //Button button = new Button
+                    //{
+                    //    Text = "Completed",
+                    //};
+                    //div.Children.Add(button);
 
                     Button deleteButton = new Button
                     {
@@ -55,9 +56,9 @@ namespace ToDoApp
             }
         }
 
-        private void AddTaskButton_Clicked(object sender, EventArgs e)
+        private void AddTaskButton_Clicked(object? sender, EventArgs e)
         {
-            if(taskEntry.Text != null)
+            if(!string.IsNullOrWhiteSpace(taskEntry.Text))
             {
                 Task newTask = new Task(tasks.Count + 1, taskEntry.Text);
 
@@ -69,21 +70,22 @@ namespace ToDoApp
             RenderTasksList();
         }
 
-        private void DeketeTaskButton_Clicked(object sender, EventArgs e)
+        private void DeketeTaskButton_Clicked(object? sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-
-            int taskId = (int)btn.CommandParameter;
-
-            for(int i = 0; i < tasks.Count; i++)
-            {
-                if (tasks[i].Id == taskId)
+            if(sender is Button button) {
+                if(button.CommandParameter is int taskId)
                 {
-                    tasks.RemoveAt(i);
+                    for (int i = 0; i < tasks.Count; i++)
+                    {
+                        if (tasks[i].Id == taskId)
+                        {
+                            tasks.RemoveAt(i);
+                        }
+                    }
+
+                    RenderTasksList();
                 }
             }
-
-            RenderTasksList();
         }
     }
 }
